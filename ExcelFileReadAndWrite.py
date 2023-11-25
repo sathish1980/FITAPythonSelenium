@@ -52,5 +52,5 @@ class excelFile():
         WBK.close()
 
 obj=excelFile()
-#obj.excelFileRead("Credentials")
-obj.excelFileReadandWrite("Credentials")
+obj.excelFileRead("Credentials")
+#obj.excelFileReadandWrite("Credentials")
