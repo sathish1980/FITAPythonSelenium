@@ -40,6 +40,8 @@ class seleniumFirstclass():
         # By css selector with tag class and Attribute
         self.browser.find_element(by=By.CSS_SELECTOR, value="iinput.inputtext _55r1 _6luy[data-testid='royal_email']").send_keys("btech")
 
+        #Basic xpath
+        self.browser.find_element(by=By.XPATH,value="//input[@id='email']").send_keys("sathish")
         time.sleep(3)
         #browser.close()
         #browser.quit()
