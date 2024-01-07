@@ -1,4 +1,10 @@
 import pytest
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture(scope="class")
@@ -28,3 +34,11 @@ def LoadDatawithtuple(request):
 @pytest.fixture(params=[{"username" : "sathish","password" : "kumar"},{"username" : "raja","password": "H"}])
 def LoadDatawithdic(request):
     return request.param
+
+@pytest.fixture(scope="class")
+def OpenBrowser(request):
+    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    browser.maximize_window()
+    request.cls.browser=browser
+    yield
+    browser.close()
