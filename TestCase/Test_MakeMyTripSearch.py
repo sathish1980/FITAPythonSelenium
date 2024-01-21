@@ -52,8 +52,9 @@ class Test_MakeMyTripSearch(BaseClass):
         log.info("Assertion done")
 
 
-    def test_FlightSearchWithSameCity(self,SeachWithParameter):
-        log = self.getLogger();
+    def test_FlightSearchWithSameCity(self,ValidSearch):
+        log = self.getLogger()
+
         self.browser.get(self.URL)
         log.info("URL is Launched")
         # Click ToLocation and Select Value
