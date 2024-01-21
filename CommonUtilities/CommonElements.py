@@ -14,10 +14,11 @@ class CommonElements():
         if(len(allframeelement)>0):
             for eachFrame in range(0,len(allframeelement)):
                 browser.switch_to.frame(eachFrame)
-                elementexist = browser.find_elements(by=By.XPATH, value=self.popUpElement);
+                elementexist = browser.find_elements(by=By.XPATH, value=self.popUpElement)
                 if(len(elementexist) > 0):
                     for eachelement in elementexist:
                         eachelement.click()
+                        browser.switch_to.default_content()
                         break
                 browser.switch_to.default_content()
 
