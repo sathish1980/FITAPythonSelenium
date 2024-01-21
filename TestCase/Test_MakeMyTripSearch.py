@@ -53,7 +53,7 @@ class Test_MakeMyTripSearch(BaseClass):
 
 
     def test_FlightSearchWithSameCity(self,SeachWithParameter):
-        log = self.getLogger()
+        log = self.getLogger();
         self.browser.get(self.URL)
         log.info("URL is Launched")
         # Click ToLocation and Select Value
