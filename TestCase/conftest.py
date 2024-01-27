@@ -1,13 +1,13 @@
-
-
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 from Utils.MakeMyTripTestDataRead import MakeMyTripTestDataRead
 
 browser = None
+
 
 @pytest.fixture(scope="class")
 def before():
@@ -15,37 +15,45 @@ def before():
     yield
     print("after each test case")
 
+
 @pytest.fixture()
 def before1():
     print("before1 each test case")
     yield
     print("after1 each test case")
 
+
 @pytest.fixture()
 def LoadData():
-    return ["sathish","kumar","R"]
+    return ["sathish", "kumar", "R"]
+
 
 @pytest.fixture()
 def ValidSearch():
-    return ["PNQ","MAA","24"]
+    return ["PNQ", "MAA", "24"]
 
-@pytest.fixture(params={"sathish","kumar","R","K"})
+
+@pytest.fixture(params={"sathish", "kumar", "R", "K"})
 def LoadDatawithParam(request):
     return request.param
 
-@pytest.fixture(params=[("sathish","kumar"),("raja","H")])
+
+@pytest.fixture(params=[("sathish", "kumar"), ("raja", "H")])
 def LoadDatawithtuple(request):
     return request.param
 
-@pytest.fixture(params=[("MAA","BLR","24"),("PNQ","MAA","27")])
+
+@pytest.fixture(params=[("MAA", "BLR", "24"), ("PNQ", "MAA", "27")])
 def SearchWithMultiDate(request):
     return request.param
 
-@pytest.fixture(params=[{"username" : "sathish","password" : "kumar"},{"username" : "raja","password": "H"}])
+
+@pytest.fixture(params=[{"username": "sathish", "password": "kumar"}, {"username": "raja", "password": "H"}])
 def LoadDatawithdic(request):
     return request.param
 
-@pytest.fixture(params=[MakeMyTripTestDataRead.excelFileRead("ValidSearch")])
+
+@pytest.fixture(params=[MakeMyTripTestDataRead.excelFileRead()])
 def SeachWithParameter(request):
     return request.param
 
@@ -55,9 +63,10 @@ def OpenBrowser(request):
     global browser
     browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     browser.maximize_window()
-    request.cls.browser=browser
+    request.cls.browser = browser
     yield
     browser.close()
+
 
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item):
@@ -83,4 +92,4 @@ def pytest_runtest_makereport(item):
 
 
 def _capture_screenshot(name):
-        browser.get_screenshot_as_file("./Report/"+name)
+    browser.get_screenshot_as_file("./Report/ " + name)

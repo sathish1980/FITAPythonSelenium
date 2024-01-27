@@ -16,7 +16,7 @@ class SearchPage(CommonElements):
         self.browser = browser
 
     def SelectFromValueFromDropDown(self,fromValue):
-        self.WaitForPresenceOfelement(self.browser,"//*[@for='fromCity']")
+        self.WaitForElementToBeClickable(self.browser,"//*[@for='fromCity']")
         self.browser.find_element(by=By.XPATH, value="//*[@for='fromCity']").click()
 
         WebDriverWait(self.browser, 60).until(EC.element_to_be_clickable((By.XPATH, "(//ul[@role='listbox']//li)[1]")))

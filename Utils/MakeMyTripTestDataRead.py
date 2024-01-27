@@ -2,10 +2,12 @@ import openpyxl
 
 
 class MakeMyTripTestDataRead():
-    Data={}
-    def excelFileRead(self,Sheetname):
+
+    @staticmethod
+    def excelFileRead():
+        Data = {}
         WBK = openpyxl.load_workbook("C:\\Users\\sathishkumar\\PycharmProjects\\FITAPythonSelenium\\input\\MakeMyTrip.xlsx")
-        sheetName = WBK[Sheetname]
+        sheetName = WBK["ValidSearch"]
         totalRows = sheetName.max_row
         print("totalrows: ",totalRows)
         totalColumn = sheetName.max_column
@@ -14,11 +16,11 @@ class MakeMyTripTestDataRead():
             for eachColumn in range(1, totalColumn + 1):
                 eachValue = sheetName.cell(row=eachRow,column=eachColumn).value
                 if(eachColumn==1):
-                    self.Data[sheetName.cell(row=1,column=eachColumn).value+str(eachRow)]=eachValue
+                    Data[sheetName.cell(row=1,column=eachColumn).value+str(eachRow)]=eachValue
                 if (eachColumn == 2):
-                    self.Data[sheetName.cell(row=1,column=eachColumn).value+str(eachRow)]=eachValue
+                    Data[sheetName.cell(row=1,column=eachColumn).value+str(eachRow)]=eachValue
                 if (eachColumn == 3):
-                    self.Data[sheetName.cell(row=1,column=eachColumn).value+str(eachRow)]=eachValue
-        print(self.Data)
+                    Data[sheetName.cell(row=1,column=eachColumn).value+str(eachRow)]=eachValue
+        print(Data)
         WBK.close()
-        return self.Data
+        return Data # Sending the dictonary in to list since in the conftest.py  we need to get a value in the list
