@@ -53,8 +53,12 @@ def LoadDatawithdic(request):
     return request.param
 
 
-@pytest.fixture(params=[MakeMyTripTestDataRead.excelFileRead()])
+@pytest.fixture(params=[MakeMyTripTestDataRead.excelFileRead("ValidSearch")])
 def SeachWithParameter(request):
+    return request.param
+
+@pytest.fixture(params=[MakeMyTripTestDataRead.excelFileRead("InvalidSearch")])
+def SeachWithsamelocation(request):
     return request.param
 
 

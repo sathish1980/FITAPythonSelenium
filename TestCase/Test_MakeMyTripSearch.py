@@ -35,7 +35,7 @@ class Test_MakeMyTripSearch(BaseClass):
         #sp.ClickPopIfExist(self.browser)
         log.info("popup is clicked")
         # Click FromLocation and Select Value
-        for eachValue in range(2,keyvalue+1):
+        for eachValue in range(2,int(keyvalue)+1):
             print(SeachWithParameter["FromLocation"+str(eachValue)])
             sp.SelectFromValueFromDropDown(SeachWithParameter["FromLocation"+str(eachValue)])
             log.info("selected the from value")
@@ -60,18 +60,26 @@ class Test_MakeMyTripSearch(BaseClass):
             log.info("Assertion done")
 
 
-    def test_FlightSearchWithSameCity(self,ValidSearch):
+    def test_FlightSearchWithSameCity(self,SeachWithsamelocation):
         log = self.getLogger()
         self.browser.get(self.URL)
         log.info("URL is Launched")
         # Click ToLocation and Select Value
         sp =SearchPage(self.browser)
-        sp.SelectToValueFromDropdown(ValidSearch[0])
-        log.info("From location is selected")
-        # get the Same city validation error
-        actualText = sp.RetrieveErrorText()
-        assert self.samecityError == actualText
-        log.info("Error validation is done ")
+        total_value = len(SeachWithsamelocation)
+        keyvalue = total_value / 3
+        print("the length of dict is : ", len(SeachWithsamelocation))
+
+        for eachvalue in range(2,int(keyvalue)+1):
+
+            sp.SelectFromValueFromDropDown(SeachWithsamelocation["FromLocation"+str(eachvalue)])
+
+            sp.SelectToValueFromDropdown(SeachWithsamelocation["ToLocation"+str(eachvalue)])
+            log.info("From location is selected")
+            # get the Same city validation error
+            actualText = sp.RetrieveErrorText()
+            assert self.samecityError == actualText
+            log.info("Error validation is done ")
 
 
 

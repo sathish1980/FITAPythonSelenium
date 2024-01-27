@@ -4,10 +4,10 @@ import openpyxl
 class MakeMyTripTestDataRead():
 
     @staticmethod
-    def excelFileRead():
+    def excelFileRead(SheetName):
         Data = {}
         WBK = openpyxl.load_workbook("C:\\Users\\sathishkumar\\PycharmProjects\\FITAPythonSelenium\\input\\MakeMyTrip.xlsx")
-        sheetName = WBK["ValidSearch"]
+        sheetName = WBK[SheetName]
         totalRows = sheetName.max_row
         print("totalrows: ",totalRows)
         totalColumn = sheetName.max_column
